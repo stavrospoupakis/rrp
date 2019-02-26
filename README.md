@@ -2,11 +2,12 @@
 Stata code for Re-scaled Regression Prediction (RRP) 
 
 ### Recent Updates
-- version 0.1 25 Feb 2019
+- version 0.1 26 Feb 2019
   - First Version
 
 
 ### Description
+This repository contains the Stata package implementing the Rescaled Regression Prediction (RRP) using two samples in two steps, as described in Crossley et al. (2019).
 
 
 ### References

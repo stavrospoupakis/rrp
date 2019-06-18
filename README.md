@@ -2,6 +2,8 @@
 Stata code for Re-scaled Regression Prediction (RRP) 
 
 ### Recent Updates
+- version 0.2 18 June 2019
+  - update for unequal sample sizes
 - version 0.1 26 Feb 2019
   - First Version
 

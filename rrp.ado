@@ -11,7 +11,7 @@ program define rrp, eclass
 tempvar ones 
 tempname R2_first sigma_first sigma_second n1 n2 ALL XX ZX XZ ZZ beta V
 
-version 14
+*version 14
 syntax varlist(numeric) [if] [in] [aweight pweight fweight iweight] [, PROXIES(string) FIRST(string)]
 
 qui est restore `first'

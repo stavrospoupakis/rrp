@@ -10,7 +10,7 @@ cap program drop rrp
 program define rrp, eclass                                                                                    
 version 14
 
-syntax varlist(numeric ts fv) [if] [in] [aweight pweight fweight iweight] [,IMPUTE(string) PROXIES(varlist numeric ts fv) FIRST(string) Robust Cluster(varlist)]
+syntax varlist(numeric ts fv) [if] [in] [aweight pweight fweight iweight] [,IMPUTE(string) PROXIES(varlist numeric ts fv) FIRST(string) Robust Cluster(varlist) HIDE]
 marksample touse
 
 tempvar ones 
@@ -101,14 +101,14 @@ di in gr _col(55) "Prob > F      = " in ye %8.4f `Fp'
 di in gr _col(55) "R2            = " in ye %8.4f `Rsq2'
 di in gr _col(55) "Root MSE      = " in ye %8.4f `sigma2'
 ereturn display, level(95)
-dis ""
-dis "Order of proxies in first-stage:  " "`names1'"
-dis "Order of proxies in second-stage: " "`names2'"
+if ("`hide'" == "") dis ""
+if ("`hide'" == "") dis "Order of proxies in first-stage:  " "`names1'"
+if ("`hide'" == "") dis "Order of proxies in second-stage: " "`names2'"
 end
 
 
 * -----------------------    VERSION UPDATES    -------------------------------*
 * 0.1.0 : 26 Feb 2019 - first version
 * 0.2.0 : 18 Jun 2019 - update for unequal sample sizes
-* 0.3.0 : 30 Oct 2019 - added options for robust/cluster SE; imputed variable name; improved output
+* 0.3.0 : 30 Oct 2019 - added options for robust/cluster SE; imputed variable name; improved output; show/hide order of proxies
 

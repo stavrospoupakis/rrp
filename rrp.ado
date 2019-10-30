@@ -77,7 +77,7 @@ mat `ZX' = `XZ''
 mat `V'  = (`n1'/`n2')*`Vb' + syminv(`XX')*`XZ'*`Vg'*`ZX'*syminv(`XX')/`Rsq1'/`Rsq1'
 
 cap drop _est_*
-ereturn post `beta' `V' , esample(`touse')
+ereturn post `beta' `V' , esample(`touse') buildfvinfo
 ereturn local vce        "`vce'"
 ereturn local vcetype    "`vcetype'"
 ereturn local clustvar   "`clustvar'"
@@ -111,5 +111,6 @@ end
 * -----------------------    VERSION UPDATES    -------------------------------*
 * 0.1.0 : 26 Feb 2019 - first version
 * 0.2.0 : 18 Jun 2019 - update for unequal sample sizes
-* 0.3.0 : 30 Oct 2019 - added options for robust/cluster SE; imputed variable name; improved output; show/hide order of proxies
+* 0.3.0 : 30 Oct 2019 - added options for robust/cluster SE; imputed variable name;
+*                       improved output; show/hide order of proxies; also accepts factor variables
 

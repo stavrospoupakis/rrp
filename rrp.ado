@@ -11,7 +11,7 @@ program define rrp, eclass
 version 14
 
 syntax varlist(numeric ts fv) [if] [in] [aweight pweight fweight iweight] ///
-       [, IMPUTE(string) PROXIES(varlist numeric ts fv) FIRST(string) Robust Cluster(varlist) HIDE]
+       [, IMPUTE(string) PROXIES(varlist numeric ts fv) FIRST(string) Robust CLuster(varlist) HIDE]
 marksample touse
 
 tempvar ones 

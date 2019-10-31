@@ -2,7 +2,7 @@
 Stata code for Re-scaled Regression Prediction (RRP) 
 
 ### Recent Updates
-- version 0.3 30 Oct 2019
+- version 0.3 31 Oct 2019
   - added robust/cluster se option; imputed variable name option; improved printed output
 - version 0.2 18 Jun 2019
   - update for unequal sample sizes

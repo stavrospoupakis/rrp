@@ -2,7 +2,7 @@
 * Title  : Rescaled Regression Prediction (RRP) using two samples
 * Author : Stavros Poupakis
 * Email  : s.poupakis@gmail.com
-* Version: 0.3 (30 October 2019)
+* Version: 0.3 (31 October 2019)
 * ------------------------------------------------------------------------------
 
 
@@ -111,6 +111,6 @@ end
 * -----------------------    VERSION UPDATES    -------------------------------*
 * 0.1.0 : 26 Feb 2019 - first version
 * 0.2.0 : 18 Jun 2019 - update for unequal sample sizes
-* 0.3.0 : 30 Oct 2019 - added options for robust/cluster SE; imputed variable name;
+* 0.3.0 : 31 Oct 2019 - added options for robust/cluster SE; imputed variable name;
 *                       improved output; show/hide order of proxies; also accepts factor variables
 

@@ -50,7 +50,7 @@ the results of the second-stage regression and creates the new imputed variable.
 {p_end}
 
 {phang}
-{cmdab:r:obust} is used to calcualte standard errors that are robust to the presence of arbitrary heteroskedasticity.
+{cmdab:r:obust} is used to calculate standard errors that are robust to the presence of arbitrary heteroskedasticity.
 {p_end}
 
 {phang}

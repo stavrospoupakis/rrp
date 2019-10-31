@@ -21,7 +21,7 @@
 {cmdab:first(}{it:{help estimates_store:model}}{cmd:)} 
 {cmdab:r:obust} 
 {cmdab:cl:uster(}clustvar{cmd:)} 
-{cmdab:hide} 
+{cmdab:h:ide} 
 
 {title:Description}
 

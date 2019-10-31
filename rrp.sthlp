@@ -15,7 +15,7 @@
 {p 8 17 2}
 {cmd:rrp}
 {indepvars}
-{ifinweight}{cmd:,}
+{ifin}{weight}{cmd:,}
 {cmdab:impute(}{newvar}{cmd:)} 
 {cmdab:proxies(}{varlist}{cmd:)} 
 {cmdab:first(}{it:{help estimates_store:model}}{cmd:)} 

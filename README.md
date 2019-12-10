@@ -23,7 +23,7 @@ net install rrp, from("https://raw.githubusercontent.com/spoupakis/rrp/master/")
 This repository contains the Stata package implementing the Rescaled Regression Prediction (RRP) using two samples in two steps, as described in Crossley et al. (2019). 
 
 #### Syntax
-The command requires the user to first run the first-stage regression in the dataset that contains the dependent variable and the proxies, and store the estimation. Note that the user also needs to provide the partial R-squared, thus the following steps need to be followed:
+The command requires the user to first run the first-stage regression in the dataset that contains the dependent variable and the proxies, and store the estimation. Note that the user also needs to provide the partial R-squared. Although many ways exist to implement this, we provide below what we think is an easy way to derive it:
 
 ```
 reg  y w

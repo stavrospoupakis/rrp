@@ -20,9 +20,10 @@
 {cmdab:impute(}{newvar}{cmd:)} 
 {cmdab:proxies(}{varlist}{cmd:)} 
 {cmdab:first(}{it:{help estimates_store:model}}{cmd:)} 
+{cmdab:partialrsq()}
 {cmdab:r:obust} 
 {cmdab:cl:uster(}clustvar{cmd:)} 
-{cmdab:partialrsq()} 
+ 
 
 {title:Description}
 
@@ -65,6 +66,7 @@ The command returns the results of the second-stage regression and creates the n
 
 {title:Example}
 
+Design
 {phang2}{cmd:. drop _all}{p_end}
 {phang2}{cmd:. matrix C = (2, .5 \ .5, 2)}{p_end}
 {phang2}{cmd:. mat A = cholesky(C)}{p_end}
@@ -97,6 +99,7 @@ The command returns the results of the second-stage regression and creates the n
 {phang2}{cmd:. replace x=. if sample==1}{p_end}
 {phang2}{cmd:. replace y=. if sample==2}{p_end}
 
+First-stage regression and partial R-squared calculation
 {phang2}{cmd:. reg  y w if sample==1}{p_end}
 {phang2}{cmd:. scalar R2_A = e(r2)}{p_end}
 {phang2}{cmd:. reg y zA zB w if sample==1}{p_end}
@@ -104,6 +107,7 @@ The command returns the results of the second-stage regression and creates the n
 {phang2}{cmd:. scalar R2_B = e(r2)}{p_end}
 {phang2}{cmd:. scalar Rsq = (R2_B-R2_A)/(1-R2_A)}{p_end}
 
+Imputation and second-stage estimation
 {phang2}{cmd:. rrp x w   if sample==2, impute(yhat) proxies(zA zB) partialrsq(Rsq) first(stage1)}{p_end} 
 
 

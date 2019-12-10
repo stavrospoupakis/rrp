@@ -22,7 +22,7 @@
 {cmdab:first(}{it:{help estimates_store:model}}{cmd:)} 
 {cmdab:r:obust} 
 {cmdab:cl:uster(}clustvar{cmd:)} 
-{cmdab:h:ide} 
+{cmdab:partialrsq()} 
 
 {title:Description}
 

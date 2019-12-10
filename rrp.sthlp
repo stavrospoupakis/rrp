@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.3.0 October 2019}{...}
+{* *! version 0.4.0 December 2019}{...}
 
 {cmd:help rrp}{right: ({browse "https://github.com/spoupakis/rrp":GitHub})}
 {hline}
@@ -27,12 +27,12 @@
 {title:Description}
 
 {pstd}{cmd:rrp} implements a Rescaled Regression Prediction (RRP) using two samples in two steps. 
-First it creates a new variable, by imputing the dependent variable in the current dataset, 
-using the stored first-stage regression, fitted in the dataset that contains the dependent variable 
-and the proxies. The command does not check (nor it requires) whether the proxies used in the 
-two datasets have the same names, or the same order in the first stage and in the {hi:proxies()} option, 
-thus it is upon the user to ensure the correct ordering of the proxy variables. The command returns 
-the results of the second-stage regression and creates the new imputed variable.
+First it creates a new variable, by imputing the dependent variable in the current sample, 
+using the stored first-stage regression, fitted in the sample that contains the dependent variable 
+and the proxies. The samples can be in different datasets or can be appended, indexed by a sample identifier.
+The command requires the proxy variables in the two samples (first-stage regression and in {hi:proxies()}) 
+to have the same name (order does not matter). The user needs to correctly input the partial R-squared (see example).
+The command returns the results of the second-stage regression and creates the new imputed variable.
 
 
 {title:Options}
@@ -50,6 +50,10 @@ the results of the second-stage regression and creates the new imputed variable.
 {p_end}
 
 {phang}
+{cmdab:partialrsq(}{cmd:)} contains the partial R-squared. It can be a value or a stored scalar. 
+{p_end}
+
+{phang}
 {cmdab:r:obust} is used to calculate standard errors that are robust to the presence of arbitrary heteroskedasticity.
 {p_end}
 
@@ -57,27 +61,50 @@ the results of the second-stage regression and creates the new imputed variable.
 {cmdab:cl:uster(}clustvar{cmd:)} is used to calculate standard errors that are robust to both arbitrary heteroskedasticity and allow intra-group correlation.
 {p_end}
 
-{phang}
-{cmdab:hide} do not display the order of proxies
-{p_end}
+
 
 {title:Example}
 
-
 {phang2}{cmd:. drop _all}{p_end}
-{phang2}{cmd:. set obs 500}{p_end}
-{phang2}{cmd:. gen u1 = rnormal(0,1)}{p_end}
-{phang2}{cmd:. gen x1 = rnormal(0,2)}{p_end}
-{phang2}{cmd:. gen y1 = 1 + 1*x1 + rnormal(0,1)}{p_end}
-{phang2}{cmd:. gen z1 = 1 + 0.5*y1 + u1}{p_end}
-{phang2}{cmd:. gen u2 = rnormal(0,1)}{p_end}
-{phang2}{cmd:. gen x2 = rnormal(0,2)}{p_end}
-{phang2}{cmd:. gen y2 = 1 +  1*x2 + rnormal(0,1)}{p_end}
-{phang2}{cmd:. gen z2 = 1 + 0.5* y2 + u2}{p_end}
+{phang2}{cmd:. matrix C = (2, .5 \ .5, 2)}{p_end}
+{phang2}{cmd:. mat A = cholesky(C)}{p_end}
 
-{phang2}{cmd:. reg y1 z1}{p_end}
+{phang2}{cmd:. set obs 100}{p_end}
+{phang2}{cmd:. gen sample = 1}{p_end}
+{phang2}{cmd:. gen c1= invnorm(uniform())}{p_end}
+{phang2}{cmd:. gen c2= invnorm(uniform())}{p_end}
+{phang2}{cmd:. mat a1 = A[1,1...]}{p_end}
+{phang2}{cmd:. matrix score x = a1 }{p_end}
+{phang2}{cmd:. matrix a2 = A[2,1...]}{p_end}
+{phang2}{cmd:. matrix score w = a2 }{p_end}
+{phang2}{cmd:. gen y  = 1 +   1*x + .5*w + rnormal(0,4)}{p_end}
+{phang2}{cmd:. gen zA = 1 + 0.5*y - .0*w + rnormal(0,2)}{p_end}
+{phang2}{cmd:. gen zB = 1 + 0.3*y - .0*w + rnormal(0,2)}{p_end}
+
+{phang2}{cmd:. set obs 300}{p_end}
+{phang2}{cmd:. replace sample = 2 in 101/300}{p_end}
+{phang2}{cmd:. replace c1= invnorm(uniform()) in 101/300}{p_end}
+{phang2}{cmd:. replace c2= invnorm(uniform()) in 101/300}{p_end}
+{phang2}{cmd:. mat a1 = A[1,1...]}{p_end}
+{phang2}{cmd:. matrix score x = a1 in 101/300, replace }{p_end}
+{phang2}{cmd:. matrix a2 = A[2,1...]}{p_end}
+{phang2}{cmd:. matrix score w = a2 in 101/300, replace  }{p_end}
+{phang2}{cmd:. replace y  = 1 +   1*x + .5*w + rnormal(0,4) in 101/300}{p_end}
+{phang2}{cmd:. replace zA = 1 + 0.5*y - .0*w + rnormal(0,2) in 101/300}{p_end}
+{phang2}{cmd:. replace zB = 1 + 0.3*y - .0*w + rnormal(0,2) in 101/300}{p_end}
+
+{phang2}{cmd:. drop c1 c2 }{p_end}
+{phang2}{cmd:. replace x=. if sample==1}{p_end}
+{phang2}{cmd:. replace y=. if sample==2}{p_end}
+
+{phang2}{cmd:. reg  y w if sample==1}{p_end}
+{phang2}{cmd:. scalar R2_A = e(r2)}{p_end}
+{phang2}{cmd:. reg y zA zB w if sample==1}{p_end}
 {phang2}{cmd:. est store stage1}{p_end}
-{phang2}{cmd:. rrp x2, impute(yhat2) proxies(z2) first(stage1)}{p_end}
+{phang2}{cmd:. scalar R2_B = e(r2)}{p_end}
+{phang2}{cmd:. scalar Rsq = (R2_B-R2_A)/(1-R2_A)}{p_end}
+
+{phang2}{cmd:. rrp x w   if sample==2, impute(yhat) proxies(zA zB) partialrsq(Rsq) first(stage1)}{p_end} 
 
 
 
@@ -127,4 +154,3 @@ Crossley, T.F., Levell, P., and Poupakis, S. (2019). {it:Regression with an Impu
 {pstd}Stavros Poupakis{p_end}
 {pstd}University of Oxford{p_end}
 {pstd}stavros.poupakis@oxfordmartin.ox.ac.uk{p_end}
-

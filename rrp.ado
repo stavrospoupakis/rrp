@@ -141,4 +141,4 @@ end
 * 0.3.0 : 31 Oct 2019 - added options for robust/cluster SE; imputed variable name;
 *                       improved output; show/hide order of proxies; also accepts factor variables
 * 0.4.0 : 10 Dec 2019 - major update; proxies need to have the same name (order doesn't matter);
-                        added option for partial R-squared (user needs to input it as value/scalar)
+*                       added option for partial R-squared (user needs to input it as value/scalar)

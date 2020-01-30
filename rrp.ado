@@ -55,7 +55,7 @@ foreach var in `ProxyNames' {
 	mat `Vg'    = nullmat(`Vg')\ `varcols'["`var'",.]
 }
 
-matrix score double `impute' = `gamma' if `touse'
+matrix score double `impute' = `coef' if `touse'
 qui replace `impute'         = `impute'/`Rsq1'
 
 

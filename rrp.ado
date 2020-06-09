@@ -101,7 +101,7 @@ mat `ZZ' = `Z1X'[1..`p', 1..`p']
 mat `XX' = `Z1X'[`p1'..`pv', `p1'..`pv']
 mat `XZ' = `Z1X'[`p1'..`pv',1.. `p']
 mat `ZX' = `XZ''
-mat `V'  = (`n1'/`n2')*`Vb' + syminv(`XX')*`XZ'*`Vg'*`ZX'*syminv(`XX')/`Rsq1'/`Rsq1'
+mat `V'  = `Vb' + (`n2'/`n1')*syminv(`XX')*`XZ'*`Vg'*`ZX'*syminv(`XX')/`Rsq1'/`Rsq1'
 
 
 cap drop _est_*

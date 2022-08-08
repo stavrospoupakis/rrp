@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.4.0 December 2019}{...}
+{* *! version 1.0.0 08aug2022}{...}
 
 {cmd:help rrp}{right: ({browse "https://github.com/spoupakis/rrp":GitHub})}
 {hline}
@@ -150,11 +150,11 @@ Imputation and second-stage estimation
 
 {title:Reference}
 {phang}
-Crossley, T.F., Levell, P., and Poupakis, S. (2019). {it:Regression with an Imputed Dependent Variable}, IFS Working Paper W19/16.
+Crossley, T.F., Levell, P., and Poupakis, S. (2022). Regression with an Imputed Dependent Variable, {it:Journal of Applied Econometrics} https://doi.org/10.1002/jae.2921.
 {p_end}
 
 {title:Author}
 
 {pstd}Stavros Poupakis{p_end}
-{pstd}University of Oxford{p_end}
-{pstd}stavros.poupakis@oxfordmartin.ox.ac.uk{p_end}
+{pstd}University College London{p_end}
+{pstd}s.poupakis@ucl.ac.uk{p_end}

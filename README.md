@@ -1,16 +1,6 @@
 # RRP
 Stata code for Re-scaled Regression Prediction (RRP) 
 
-### Recent Updates
-- version 0.4 10 Dec 2019
-  - proxy variables need to have the same name (order does not matter); added partial R-squared option;
-- version 0.3 31 Oct 2019
-  - added robust/cluster se option; imputed variable name option; improved printed output
-- version 0.2 18 Jun 2019
-  - update for unequal sample sizes
-- version 0.1 26 Feb 2019
-  - First Version
-
 ### Install
 This is a development version, to download it and use, open Stata and run the following:
 
@@ -20,7 +10,7 @@ net install rrp, from("https://raw.githubusercontent.com/spoupakis/rrp/master/")
 ```
 
 ### Description
-This repository contains the Stata package implementing the Rescaled Regression Prediction (RRP) using two samples in two steps, as described in Crossley et al. (2019). 
+This repository contains the Stata package implementing the Rescaled Regression Prediction (RRP) using two samples in two steps, as described in Crossley et al. (2022). 
 
 #### Syntax
 The command requires the user to first run the first-stage regression in the dataset that contains the dependent variable and the proxies, and store the estimation. Note that the user also needs to provide the partial R-squared. Although many ways exist to implement this, we provide below what we think is an easy way to derive it:
@@ -42,5 +32,5 @@ rrp x w , impute(yhat) proxies(zA zB) partialrsq(Rsq) first(stage1)
 
 
 ### References
-Crossley, T.F., Levell, P., and Poupakis, S. (2019). Regression with an Imputed Dependent Variable, [IFS Working Paper W19/16](https://www.ifs.org.uk/publications/14165).
+Crossley, T.F., Levell, P., and Poupakis, S. (2022). Regression with an Imputed Dependent Variable, *Journal of Applied Econometrics* https://doi.org/10.1002/jae.2921
 

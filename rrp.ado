@@ -1,14 +1,9 @@
-* ------------------------------------------------------------------------------
-* Title  : Rescaled Regression Prediction (RRP) using two samples
-* Author : Stavros Poupakis
-* Email  : s.poupakis@gmail.com
-* Version: 0.4 (10 December 2019)
-* ------------------------------------------------------------------------------
+*! version 1.0.0 08aug2022 
 
 
 cap program drop rrp
 program define rrp, eclass                                                                                    
-version 14
+version 8
 
 syntax varlist(numeric ts fv) [if] [in] [aweight pweight fweight iweight] ///
        [, IMPUTE(string) PROXIES(varlist numeric ts fv) FIRST(string) PARTIALRSQ(string) Robust CLuster(varlist)]
@@ -142,3 +137,4 @@ end
 *                       improved output; show/hide order of proxies; also accepts factor variables
 * 0.4.0 : 10 Dec 2019 - major update; proxies need to have the same name (order doesn't matter);
 *                       added option for partial R-squared (user needs to input it as value/scalar)
+* 1.0.0 :  8 Aug 2022 - as used in published JAE article
